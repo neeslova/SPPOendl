@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   https://www.springframework.org/schema/beans/spring-beans.xsd
+        https://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <bean id = "menu"
+              class = "org.example.Menu">
+        </bean>
+
+        <bean id = "validator"
+              class = "org.example.Validator.InputValidatorChain">
+        </bean>
+
+        <bean id="disciplineFactory"
+              class="org.example.Discipline.DisciplineFactory" factory-method="getInstance">
+        </bean>
+
+        <bean id="mandatoryDiscipline" factory-bean="disciplineFactory" factory-method="createDiscipline">
+                <constructor-arg value="Обязательная" />
+        </bean>
+
+        <bean id="optionalDiscipline" factory-bean="disciplineFactory" factory-method="createDiscipline">
+                <constructor-arg value="Дополнительная" />
+        </bean>
+
+        <bean id="mandatory" class="org.example.Discipline.MandatoryDisciplineProxy">
+                <constructor-arg ref="mandatoryDiscipline" />
+        </bean>
+
+        <bean id="decoratedDiscipline1" class="org.example.Discipline.MandatoryDisciplineProxy">
+                <constructor-arg ref="mandatoryDiscipline" />
+        </bean>
+
+        <bean id="decoratedDiscipline2" class="org.example.Discipline.OptionalDisciplineProxy">
+                <constructor-arg ref="optionalDiscipline" />
+        </bean>
+
+        <bean id = "loggingBeen"
+              class = "org.example.LoggingBeen">
+        </bean>
+
+
+        <aop:config>
+                <aop:pointcut id="beforeAdd" expression="execution(public void add(String))"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:before method="beforeAdd" pointcut-ref="beforeAdd"/>
+                </aop:aspect>
+        </aop:config>
+
+        <aop:config>
+                <aop:pointcut id="afterAdd" expression="execution(public void add(String))"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:after method="afterAdd" pointcut-ref="afterAdd"/>
+                </aop:aspect>
+        </aop:config>
+
+        <aop:config>
+                <aop:pointcut id="beforeGetNames" expression="execution(public String getNames())"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:before method="beforeGetNames" pointcut-ref="beforeGetNames"/>
+                </aop:aspect>
+        </aop:config>
+
+        <aop:config>
+                <aop:pointcut id="afterGetNames" expression="execution(public String getNames())"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:after method="afterGetNames" pointcut-ref="afterGetNames"/>
+                </aop:aspect>
+        </aop:config>
+
+        <aop:config>
+                <aop:pointcut id="beforeSaveDataToXML" expression="execution(public String saveDataToXML())"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:before method="beforeSaveDataToXML" pointcut-ref="beforeSaveDataToXML"/>
+                </aop:aspect>
+        </aop:config>
+
+        <aop:config>
+                <aop:pointcut id="afterSaveDataToXML" expression="execution(public String saveDataToXML())"/>
+                <aop:aspect ref="loggingBeen">
+                        <aop:before method="afterSaveDataToXML" pointcut-ref="afterSaveDataToXML"/>
+                </aop:aspect>
+        </aop:config>
+
+</beans>

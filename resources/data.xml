@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<courses>
+        
+    <course>
+                
+        <direction>Искусственный интеллект и машинное обучение</direction>
+                
+        <disciplines>
+                        
+            <discipline>Машинное обучение</discipline>
+                        
+            <discipline>Глубокое обучение</discipline>
+                        
+            <discipline>Обработка естественного языка</discipline>
+                        
+            <discipline>Компьютерное зрение</discipline>
+                    
+        </disciplines>
+            
+    </course>
+        
+    <course>
+                
+        <direction>Инженерия виртуальной реальности и дополненной реальности</direction>
+                
+        <disciplines>
+                        
+            <discipline>Визуальное программирование и разработка интерфейсов</discipline>
+                        
+            <discipline>Трекинг движений и позиционирование</discipline>
+                        
+            <discipline>Разработка виртуальных миров и сценариев</discipline>
+                        
+            <discipline>Мультимедиа и визуальные эффекты</discipline>
+                    
+        </disciplines>
+            
+    </course>
+        
+
+</courses>
