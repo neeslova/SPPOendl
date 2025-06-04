@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OptionalDisciplineProxy implements DisciplineInterface {
@@ -162,8 +161,8 @@ public class OptionalDisciplineProxy implements DisciplineInterface {
         return optionalDiscipline.contains(name);
     }
 
-    public void setDiscipline(String disciplineName) {
-        optionalDiscipline.setDiscipline(disciplineName);
+    public void setDisciplineInterface(String disciplineName) {
+        optionalDiscipline.setDisciplineInterface(disciplineName);
     }
 
     public void remove(String disciplineName) {

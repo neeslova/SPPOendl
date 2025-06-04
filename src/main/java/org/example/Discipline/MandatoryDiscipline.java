@@ -108,7 +108,7 @@ public class MandatoryDiscipline implements DisciplineInterface, Iterable<String
         }
     }
 
-    public void setDiscipline(String disciplineName) {
+    public void setDisciplineInterface(String disciplineName) {
         try {
 
             logger.info("Добавление обязательной дисциплины: " + disciplineName);

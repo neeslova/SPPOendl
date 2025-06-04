@@ -68,8 +68,8 @@ public class DisciplineDecorator implements DisciplineInterface {
     }
 
     @Override
-    public void setDiscipline(String disciplineName) {
-        decoratedDiscipline1.setDiscipline(disciplineName);
+    public void setDisciplineInterface(String disciplineName) {
+        decoratedDiscipline1.setDisciplineInterface(disciplineName);
     }
 
     @Override

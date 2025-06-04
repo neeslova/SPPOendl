@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<user>
+        
+    <disciplines>
+                
+        <discipline name="Мультимедиа и визуальные эффекты"/>
+                
+        <discipline name="Визуальное программирование и разработка интерфейсов"/>
+                
+        <discipline name="Трекинг движений и позиционирование"/>
+                
+        <discipline name="Разработка виртуальных миров и сценариев"/>
+            
+        <discipline name="Физра">
+            <project name="Бег">
+                <task name="Практика">100км</task>
+            </project>
+        </discipline>
+    </disciplines>
+    
+</user>

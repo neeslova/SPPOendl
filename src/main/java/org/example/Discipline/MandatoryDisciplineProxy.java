@@ -17,7 +17,6 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MandatoryDisciplineProxy implements DisciplineInterface {
@@ -25,29 +24,29 @@ public class MandatoryDisciplineProxy implements DisciplineInterface {
 
 
 
-    private final DisciplineInterface mandatoryDiscipline;
+    private final DisciplineInterface DisciplineInterface;
 
     public MandatoryDisciplineProxy(DisciplineInterface mandatoryDiscipline) {
-        this.mandatoryDiscipline = mandatoryDiscipline;
+        this.DisciplineInterface = mandatoryDiscipline;
     }
 
     public Map<String, Project> getData() {
-        return mandatoryDiscipline.getData();
+        return DisciplineInterface.getData();
     }
 
     @Override
     public String getNames() {
-        return mandatoryDiscipline.getNames();
+        return DisciplineInterface.getNames();
     }
 
     @Override
     public String getNameNumber(int number) {
-        return mandatoryDiscipline.getNameNumber(number);
+        return DisciplineInterface.getNameNumber(number);
     }
 
     @Override
     public int getQuantity() {
-        return mandatoryDiscipline.getQuantity();
+        return DisciplineInterface.getQuantity();
     }
 
     @Override
@@ -61,7 +60,7 @@ public class MandatoryDisciplineProxy implements DisciplineInterface {
             logger.fine("Добавление дисциплин");
             Element disciplines = doc.createElement("disciplines");
             rootElement.appendChild(disciplines);
-            Map<String, Project> name = mandatoryDiscipline.getData();
+            Map<String, Project> name = DisciplineInterface.getData();
             for (Map.Entry<String, Project> entry : name.entrySet()) {
                 Project project = entry.getValue();
                 Map<String, Task> task = project.getData();
@@ -77,7 +76,7 @@ public class MandatoryDisciplineProxy implements DisciplineInterface {
 
             // Установка пути к папке "users"
             String usersFolderPath = "resources\\users";
-            String fileName = mandatoryDiscipline.getPath();
+            String fileName = DisciplineInterface.getPath();
             String filePath = usersFolderPath + File.separator + fileName;
 
             // Создание объекта File для папки "users"
@@ -147,43 +146,43 @@ public class MandatoryDisciplineProxy implements DisciplineInterface {
 
     @Override
     public void add(String name) {
-        mandatoryDiscipline.add(name);
+        DisciplineInterface.add(name);
     }
 
     public ProjectInterface createProject(String discipline, String name) {
-        mandatoryDiscipline.createProject(discipline, name);
+        this.DisciplineInterface.createProject(discipline, name);
         return null;
     }
 
     @Override
     public boolean contains(String name) {
-        return mandatoryDiscipline.contains(name);
+        return DisciplineInterface.contains(name);
     }
 
-    public void setDiscipline(String disciplineName) {
-        mandatoryDiscipline.setDiscipline(disciplineName);
+    public void setDisciplineInterface(String disciplineName) {
+        DisciplineInterface.setDisciplineInterface(disciplineName);
     }
 
     public void remove(String disciplineName) {
-        mandatoryDiscipline.remove(disciplineName);
+        DisciplineInterface.remove(disciplineName);
     }
 
     public Iterator<String> iterator() {
-        return mandatoryDiscipline.iterator();
+        return DisciplineInterface.iterator();
     }
 
     public void setPath(String path) {
-        mandatoryDiscipline.setPath(path);
+        DisciplineInterface.setPath(path);
     }
 
     @Override
     public String getPath() {
-        return mandatoryDiscipline.getPath();
+        return DisciplineInterface.getPath();
     }
 
     @Override
     public void clear() {
-        mandatoryDiscipline.clear();
+        DisciplineInterface.clear();
     }
 }
 

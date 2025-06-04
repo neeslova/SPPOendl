@@ -110,7 +110,7 @@ public class OptionalDiscipline implements DisciplineInterface {
         }
     }
 
-    public void setDiscipline(String disciplineName) {
+    public void setDisciplineInterface(String disciplineName) {
         try {
             logger.info("Добавление дополнительной дисциплины: " + disciplineName);
             this.names.put(disciplineName, new Project());

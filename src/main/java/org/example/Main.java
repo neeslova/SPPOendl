@@ -1,16 +1,31 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Main {
-    public static void main() {
-        SharedState sharedState = new SharedState(0, 0);
+    public static void main(String[] args) {
+        // Создаем очередь задач с ограничением в 10 элементов
+        TaskQueue taskQueue = new TaskQueue(10);
+        // Объект для синхронизации подтверждения выполнения задач
+        Object confirmationLock = new Object();
+        Scanner scanner = new Scanner(System.in);
+        Menu menu = new Menu();
 
-        UserInteractionThread userInteractionThread = new UserInteractionThread(sharedState);
-        ServerTaskThread serverTaskThread = new ServerTaskThread(sharedState);
+        // Создаем и запускаем потоки
+        Producer producer = new Producer(taskQueue, confirmationLock, scanner);
+        Consumer consumer = new Consumer(taskQueue, confirmationLock, menu);
 
-        Thread userThread = new Thread(userInteractionThread);
-        Thread serverThread = new Thread(serverTaskThread);
+        Thread producerThread = new Thread(producer, "Producer-Thread");
+        Thread consumerThread = new Thread(consumer, "Consumer-Thread");
 
-        userThread.start();
-        serverThread.start();
+        producerThread.start();
+        consumerThread.start();
+
+        try {
+            producerThread.join();
+            consumerThread.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

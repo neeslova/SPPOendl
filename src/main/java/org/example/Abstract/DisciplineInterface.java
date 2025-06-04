@@ -22,7 +22,7 @@ public interface DisciplineInterface extends Iterable<String> {
 
     boolean contains(String disciplineWithRoot);
 
-    void setDiscipline(String disciplineName);
+    void setDisciplineInterface(String disciplineName);
 
     void remove(String disciplineName);
 
